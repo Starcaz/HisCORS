@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>HisCORS Example V1.0.0</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="HisCORS.js"></script>
+
+</head>
+<body>
+
+<input type="text" id="rsn" value="Starcaz"/>
+<button id="rsnButton">Load</button>
+<p id="hiscores"></p>
+
+<script type="text/javascript">
+
+$("#rsnButton").click(function(){
+
+	// Library usage example
+	// Remember, function is async
+	getHiscores($("#rsn").val()).then(
+		function(hiscores){
+			// Convert Javascript map to HTML
+			var string = toString(hiscores);
+			// Loads retrieved hiscores into the page
+			$("#hiscores").html(string);
+		}
+	);
+	
+	// Function to convert Javascript map to HTML
+	function toString(map) {
+		var string = "";
+		
+		map.forEach(function(value, key){
+			string += `${key}: ${value}<br/>`;
+		});
+		
+		return string;
+	}
+	
+});
+
+</script>
+
+</body>
+</html>
